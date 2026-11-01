@@ -12,9 +12,9 @@
 <header><nav>
 <b>Mekhi Wira Yuda</b>
 <button id="burger" type="button" aria-label="Buka menu" aria-expanded="false">☰</button>
-<div id="links"><a href="#tentang">Tentang</a><a href="#skills">Skills</a><a href="#editing">Konten</a>
-<a href="#pengalaman">Pengalaman</a><a href="#sertifikat">Sertifikat</a><a href="#galeri">Galeri</a><a href="#kontak">Kontak</a>
-<button id="tg" type="button" aria-label="Ganti tema">☀️ Terang</button></div>
+<div id="links"><a href="#tentang" data-i18n="nTentang">Tentang</a><a href="#skills">Skills</a><a href="#editing" data-i18n="nKonten">Konten</a>
+<a href="#pengalaman" data-i18n="nPengalaman">Pengalaman</a><a href="#sertifikat" data-i18n="nSertifikat">Sertifikat</a><a href="#galeri" data-i18n="nGaleri">Galeri</a><a href="#kontak" data-i18n="nKontak">Kontak</a>
+<div class="btns"><button id="tg" type="button" aria-label="Theme">☀️ Terang</button><button id="lg" type="button" aria-label="Language">🌐 EN</button></div></div>
 </nav></header>
 
 <div id="hero">
@@ -26,46 +26,46 @@
 </div>
 <div class="shade"></div>
 <div class="hc">
-<h1>Halo,<br>Saya Mekhi Wira Yuda.</h1>
-<p>Fresh graduate Administrasi Publik, sekaligus content creator dengan skill editing video dan desain.</p>
-<div><a class="btn" href="#galeri">Lihat Galeri</a><a class="btn o" href="assets/CV-Mekhi-Wira-Yuda.pdf" download>Download CV</a></div>
+<h1 data-i18n="h1">Halo,<br>Saya Mekhi Wira Yuda.</h1>
+<p data-i18n="heroP">Fresh graduate Administrasi Publik, sekaligus content creator dengan skill editing video dan desain.</p>
+<div><a class="btn" href="#galeri" data-i18n="btnGal">Lihat Galeri</a><a class="btn o" href="assets/CV-Mekhi-Wira-Yuda.pdf" download>Download CV</a></div>
 </div>
-<div class="hint">Gulir ke bawah ↓</div>
+<div class="hint" data-i18n="hint">Gulir ke bawah ↓</div>
 </div>
 <div id="spacer"></div>
 
 <section id="tentang" class="fade">
-<h2>Tentang Saya</h2>
+<h2 data-i18n="aboutH">Tentang Saya</h2>
 <div class="about">
 <img class="pf" src="assets/img/profil.jpg" alt="Foto Mekhi Wira Yuda" onerror="this.style.display='none'">
-<p>Lulusan baru dengan gelar Sarjana Administrasi Publik dari Sekolah Tinggi Ilmu Administrasi Satya Negara Palembang. Mampu menggunakan Microsoft Office, memiliki kemampuan bahasa Inggris tingkat dasar, mampu bekerja mandiri maupun kolaboratif dalam tim, serta siap beradaptasi dengan lingkungan kerja yang dinamis. Di luar itu, saya content creator yang membuat dan mengedit vlog sendiri.</p>
+<p data-i18n="aboutP">Lulusan baru dengan gelar Sarjana Administrasi Publik dari Sekolah Tinggi Ilmu Administrasi Satya Negara Palembang. Mampu menggunakan Microsoft Office, memiliki kemampuan bahasa Inggris tingkat dasar, mampu bekerja mandiri maupun kolaboratif dalam tim, serta siap beradaptasi dengan lingkungan kerja yang dinamis. Di luar itu, saya content creator amatir yang membuat dan mengedit vlog sendiri.</p>
 </div>
 </section>
 
 <section id="skills" class="fade">
 <h2>Skills</h2>
-<h3 class="sub" style="margin-top:0">Administrasi &amp; Perkantoran</h3>
-<div class="tags"><span>Microsoft Office</span><span>Google Docs</span><span>Kerja mandiri &amp; tim</span><span>Organisasi &amp; kepanitiaan</span><span>Bahasa Inggris (dasar)</span></div>
-<h3 class="sub">Kreatif &amp; Konten</h3>
-<div class="tags"><span>Premiere Pro</span><span>CapCut</span><span>Canva</span><span>Dokumentasi foto &amp; video</span><span>Vlog</span></div>
+<h3 class="sub" style="margin-top:0" data-i18n="skA">Administrasi &amp; Perkantoran</h3>
+<div class="tags"><span>Microsoft Office</span><span>Google Docs</span><span data-i18n="sTeam">Kerja mandiri &amp; tim</span><span data-i18n="sOrg">Organisasi &amp; kepanitiaan</span><span data-i18n="sEng">Bahasa Inggris (dasar)</span></div>
+<h3 class="sub" data-i18n="skC">Kreatif &amp; Konten</h3>
+<div class="tags"><span>Premiere Pro</span><span>CapCut</span><span>Canva</span><span data-i18n="sDoc">Dokumentasi foto &amp; video</span><span>Vlog</span></div>
 </section>
 
 <section id="editing">
-<h2>Konten Kreatif</h2>
-<p style="color:var(--mut);margin-top:-8px">Video dan vlog yang saya edit sendiri.</p>
+<h2 data-i18n="contentH">Konten Kreatif</h2>
+<p data-i18n="contentP" style="color:var(--mut);margin-top:-8px">Video dan vlog yang saya edit sendiri.</p>
 <div id="vids" class="grid vgrid"></div>
 <div id="procwrap" style="display:none">
-<h3 class="sub">Proses Editing</h3>
+<h3 class="sub" data-i18n="procH">Proses Editing</h3>
 <div id="proc" class="grid proc"></div>
 </div>
 </section>
 
 <section id="pengalaman">
-<h2>Pengalaman &amp; Pendidikan</h2>
+<h2 data-i18n="expH">Pengalaman &amp; Pendidikan</h2>
 <div class="tl">
-<div><b>Ketua Divisi Dokumentasi, BEM STIA Satya Negara</b><br><small>Organisasi</small></div>
-<div><b>Ketua Panitia PKKMB 2025</b><br><small>Pengenalan Kehidupan Kampus bagi Mahasiswa Baru, STIA Satya Negara</small></div>
-<div><b>S1 Administrasi Publik</b><br><small>Sekolah Tinggi Ilmu Administrasi Satya Negara Palembang</small></div>
+<div><b data-i18n="e1t">Ketua Divisi Dokumentasi, BEM STIA Satya Negara</b><br><small data-i18n="e1s">Organisasi</small></div>
+<div><b data-i18n="e2t">Ketua Panitia PKKMB</b><br><small data-i18n="e2s">Perkenalan kampus ke mahasiswa baru, STIA Satya Negara</small></div>
+<div><b data-i18n="e3t">S1 Administrasi Publik</b><br><small>Sekolah Tinggi Ilmu Administrasi Satya Negara Palembang</small></div>
 <div><b>SMA Adabiyah Palembang</b></div>
 <div><b>SMP Adabiyah Palembang</b></div>
 <div><b>MI Adabiyah 2 Palembang</b></div>
@@ -73,20 +73,20 @@
 </section>
 
 <section id="sertifikat" style="display:none">
-<h2>Sertifikat</h2>
+<h2 data-i18n="certH">Sertifikat</h2>
 <div id="certs"></div>
 </section>
 
 <section id="galeri">
-<h2>Galeri</h2>
+<h2 data-i18n="galH">Galeri</h2>
 <div id="albums" class="grid"></div>
-<button id="back" class="btn o" type="button">← Kembali ke semua album</button>
+<button id="back" class="btn o" type="button" data-i18n="back">← Kembali ke semua album</button>
 <div id="photos"></div>
 <p id="gmsg" style="color:var(--mut);font-size:14px"></p>
 </section>
 
 <section id="kontak">
-<h2>Kontak</h2>
+<h2 data-i18n="kontakH">Kontak</h2>
 <a class="btn" href="mailto:y24may.mwira@gmail.com">Email</a>
 <a class="btn o" href="https://www.linkedin.com/in/mekhi-wira-yuda-93b386196/" target="_blank" rel="noopener">LinkedIn</a>
 <a class="btn o" href="https://www.instagram.com/y24may.mwira/" target="_blank" rel="noopener">Instagram</a>

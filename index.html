@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("theme")||"dark"}catch(e){document.documentElement.dataset.theme="dark"}</script>
 <title>Mekhi Wira Yuda | Portofolio</title>
 <meta name="description" content="Portofolio Mekhi Wira Yuda, Sarjana Administrasi Publik, dokumentasi dan editing video.">
 <style>
-:root{--bg:#f7f7f4;--card:#fff;--tx:#1d1d1b;--mut:#6b6b66;--ac:#1f5eff;--bd:#e4e4de}
-@media(prefers-color-scheme:dark){:root{--bg:#121214;--card:#1b1b1f;--tx:#f1f1ee;--mut:#9a9a94;--ac:#6d93ff;--bd:#2a2a30}}
+:root{--bg:#121214;--card:#1b1b1f;--tx:#f1f1ee;--mut:#9a9a94;--ac:#6d93ff;--bd:#2a2a30;color-scheme:dark}
+:root[data-theme=light]{--bg:#f7f7f4;--card:#fff;--tx:#1d1d1b;--mut:#6b6b66;--ac:#1f5eff;--bd:#e4e4de;color-scheme:light}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
 a{color:var(--ac)}
@@ -35,49 +36,61 @@ video,iframe.ig{width:100%;max-width:720px;border-radius:14px;border:1px solid v
 #back{display:none;margin-top:20px}
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;place-items:center;z-index:20;cursor:zoom-out}
 #lb img{max-width:94vw;max-height:92vh;border-radius:8px}
+#tg{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;padding:5px 12px;cursor:pointer;font-size:13px}
+.about{display:flex;gap:24px;align-items:center;flex-wrap:wrap}.about p{flex:1;min-width:260px;margin:0}
+.pf{width:150px;height:150px;border-radius:50%;object-fit:cover;border:2px solid var(--bd)}
+h3.sub{margin:28px 0 12px;font-size:18px}
+.vgrid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.proc img{width:100%;border-radius:10px;border:1px solid var(--bd);cursor:zoom-in;display:block}
 footer{text-align:center;color:var(--mut);font-size:13px;padding:30px}
 </style>
 </head>
 <body>
 <header><nav>
 <b>Mekhi Wira Yuda</b>
-<a href="#tentang">Tentang</a><a href="#skills">Skills</a><a href="#editing">Editing</a>
+<a href="#tentang">Tentang</a><a href="#skills">Skills</a><a href="#editing">Konten</a>
 <a href="#pengalaman">Pengalaman</a><a href="#galeri">Galeri</a><a href="#kontak">Kontak</a>
+<button id="tg" type="button" aria-label="Ganti tema">☀️ Terang</button>
 </nav></header>
 
 <section class="hero">
 <h1>Halo, saya Mekhi Wira Yuda.</h1>
-<p>Fresh graduate Sarjana Administrasi Publik dengan pengalaman di dokumentasi, editing video, dan organisasi kampus.</p>
+<p>Fresh graduate Administrasi Publik, sekaligus content creator dengan skill editing video dan desain.</p>
 <a class="btn" href="#galeri">Lihat Galeri</a>
 <a class="btn o" href="assets/CV-Mekhi-Wira-Yuda.pdf" download>Download CV</a>
 </section>
 
 <section id="tentang">
 <h2>Tentang Saya</h2>
-<p>Lulusan baru dengan gelar Sarjana Administrasi Publik dari Sekolah Tinggi Ilmu Administrasi Satya Negara Palembang. Mampu menggunakan Microsoft Office, memiliki kemampuan bahasa Inggris tingkat dasar, mampu bekerja mandiri maupun kolaboratif dalam tim, serta siap beradaptasi dengan lingkungan kerja yang dinamis.</p>
+<div class="about">
+<img class="pf" src="assets/img/profil.jpg" alt="Foto Mekhi Wira Yuda" onerror="this.style.display='none'">
+<p>Lulusan baru dengan gelar Sarjana Administrasi Publik dari Sekolah Tinggi Ilmu Administrasi Satya Negara Palembang. Mampu menggunakan Microsoft Office, memiliki kemampuan bahasa Inggris tingkat dasar, mampu bekerja mandiri maupun kolaboratif dalam tim, serta siap beradaptasi dengan lingkungan kerja yang dinamis. Di luar itu, saya content creator amatir yang membuat dan mengedit vlog sendiri.</p>
+</div>
 </section>
 
 <section id="skills">
 <h2>Skills</h2>
-<div class="tags">
-<span>Microsoft Office</span><span>Google Docs</span><span>Premiere Pro</span><span>CapCut</span><span>Canva</span><span>Bahasa Inggris (dasar)</span><span>Kerja mandiri &amp; tim</span>
-</div>
+<h3 class="sub" style="margin-top:0">Administrasi &amp; Perkantoran</h3>
+<div class="tags"><span>Microsoft Office</span><span>Google Docs</span><span>Kerja mandiri &amp; tim</span><span>Organisasi &amp; kepanitiaan</span><span>Bahasa Inggris (dasar)</span></div>
+<h3 class="sub">Kreatif &amp; Konten</h3>
+<div class="tags"><span>Premiere Pro</span><span>CapCut</span><span>Canva</span><span>Dokumentasi foto &amp; video</span><span>Vlog</span></div>
 </section>
 
 <section id="editing">
-<h2>Portofolio Editing</h2>
-<!-- OPSI A (aktif): video lokal. Taruh file di assets/video/porto1editing.mp4 -->
-<!-- iframe class="ig" height="600" src="https://www.instagram.com/reel/DPf-EVOEdXG/embed" allowfullscreen loading="lazy"></iframe> -->
-<video controls preload="metadata" src="assets/video/porto1editing.mp4"></video>
-<!-- OPSI B: embed Instagram Reel. Hapus tag <video> di atas, lalu aktifkan baris ini
-     dan ganti KODE_REEL dengan kode di link reel (instagram.com/reel/KODE_REEL/): -->     
+<h2>Konten Kreatif</h2>
+<p style="color:var(--mut);margin-top:-8px">Video dan vlog yang saya edit sendiri. Semua file .mp4 di folder assets/video tampil otomatis.</p>
+<div id="vids" class="grid vgrid"></div>
+<div id="procwrap" style="display:none">
+<h3 class="sub">Proses Editing</h3>
+<div id="proc" class="grid proc"></div>
+</div>
 </section>
 
 <section id="pengalaman">
 <h2>Pengalaman &amp; Pendidikan</h2>
 <div class="tl">
 <div><b>Ketua Divisi Dokumentasi, BEM STIA Satya Negara</b><br><small>Organisasi</small></div>
-<div><b>Ketua Panitia PKKMB</b><br><small>Pengenalan Kehidupan Kampus bagi Mahasiswa Baru, STIA Satya Negara</small></div>
+<div><b>Ketua Panitia PKKMB</b><br><small>Perkenalan kampus ke mahasiswa baru, STIA Satya Negara</small></div>
 <div><b>S1 Administrasi Publik</b><br><small>Sekolah Tinggi Ilmu Administrasi Satya Negara Palembang</small></div>
 <div><b>SMA Adabiyah Palembang</b></div>
 <div><b>SMP Adabiyah Palembang</b></div>
@@ -117,6 +130,26 @@ const api = p => `https://api.github.com/repos/${owner}/${repo}/contents/${p}`;
 const isImg = n => /\.(jpe?g|png|webp|gif|avif)$/i.test(n);
 const pretty = s => s.replace(/[-_]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
 const $ = id => document.getElementById(id);
+const IG_REELS = []; // isi kode reel Instagram, contoh: ['C1abcDEfgh2']
+const isVid = n => /\.(mp4|webm|mov)$/i.test(n);
+async function loadMedia(){
+  const v=$('vids');
+  try{
+    (await list('assets/video')).filter(f=>f.type==='file'&&isVid(f.name)).forEach(f=>{
+      v.insertAdjacentHTML('beforeend',`<video controls preload="metadata" src="${f.download_url}"></video>`);
+    });
+  }catch(e){v.insertAdjacentHTML('beforeend','<video controls preload="metadata" src="assets/video/porto1editing.mp4"></video>');}
+  IG_REELS.forEach(c=>v.insertAdjacentHTML('beforeend',`<iframe class="ig" height="560" src="https://www.instagram.com/reel/${c}/embed" allowfullscreen loading="lazy"></iframe>`));
+  try{
+    const im=(await list('assets/proses-editing')).filter(f=>f.type==='file'&&isImg(f.name));
+    if(im.length){$('procwrap').style.display='';$('proc').innerHTML=im.map(f=>`<img data-zoom loading="lazy" src="${f.download_url}" alt="Proses editing">`).join('');}
+  }catch(e){}
+}
+loadMedia();
+const tg=$('tg'),root=document.documentElement;
+const paint=()=>{tg.textContent=root.dataset.theme==='dark'?'☀️ Terang':'🌙 Gelap';};
+tg.onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}paint();};
+paint();
 
 async function list(p){const r=await fetch(api(p));if(!r.ok)throw new Error(r.status);return r.json();}
 
@@ -139,11 +172,11 @@ async function loadAlbums(){
 }
 function openAlbum(a){
   $('albums').style.display='none';$('back').style.display='inline-block';
-  $('photos').innerHTML=a.imgs.map(f=>`<img loading="lazy" src="${f.download_url}" alt="${pretty(a.name)}">`).join('')||'<p>Belum ada foto.</p>';
+  $('photos').innerHTML=a.imgs.map(f=>`<img data-zoom loading="lazy" src="${f.download_url}" alt="${pretty(a.name)}">`).join('')||'<p>Belum ada foto.</p>';
   location.hash='galeri';
 }
 $('back').onclick=()=>{$('photos').innerHTML='';$('albums').style.display='';$('back').style.display='none';};
-$('photos').onclick=e=>{if(e.target.tagName==='IMG'){$('lb').firstElementChild.src=e.target.src;$('lb').style.display='grid';}};
+document.addEventListener('click',e=>{const t=e.target.closest('[data-zoom]');if(t){$('lb').firstElementChild.src=t.src;$('lb').style.display='grid';}});
 $('lb').onclick=()=>{$('lb').style.display='none';};
 loadAlbums();
 </script>

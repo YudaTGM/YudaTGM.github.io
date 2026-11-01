@@ -11,6 +11,35 @@ const api = p => `https://api.github.com/repos/${owner}/${repo}/contents/${p}`;
 const isImg = n => /\.(jpe?g|png|webp|gif|avif)$/i.test(n);
 const pretty = s => s.replace(/[-_]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
 const $ = id => document.getElementById(id);
+const I18N={
+id:{nTentang:'Tentang',nKonten:'Konten',nPengalaman:'Pengalaman',nSertifikat:'Sertifikat',nGaleri:'Galeri',nKontak:'Kontak',
+h1:'Halo,<br>Saya Mekhi Wira Yuda.',heroP:'Fresh graduate Administrasi Publik, sekaligus content creator dengan skill editing video dan desain.',btnGal:'Lihat Galeri',hint:'Gulir ke bawah ↓',
+aboutH:'Tentang Saya',aboutP:'Lulusan baru dengan gelar Sarjana Administrasi Publik dari Sekolah Tinggi Ilmu Administrasi Satya Negara Palembang. Mampu menggunakan Microsoft Office, memiliki kemampuan bahasa Inggris tingkat dasar, mampu bekerja mandiri maupun kolaboratif dalam tim, serta siap beradaptasi dengan lingkungan kerja yang dinamis. Di luar itu, saya content creator amatir yang membuat dan mengedit vlog sendiri.',
+skA:'Administrasi & Perkantoran',skC:'Kreatif & Konten',sTeam:'Kerja mandiri & tim',sOrg:'Organisasi & kepanitiaan',sEng:'Bahasa Inggris (dasar)',sDoc:'Dokumentasi foto & video',
+contentH:'Konten Kreatif',contentP:'Video dan vlog yang saya edit sendiri.',procH:'Proses Editing',
+expH:'Pengalaman & Pendidikan',e1t:'Ketua Divisi Dokumentasi, BEM STIA Satya Negara',e1s:'Organisasi',e2t:'Ketua Panitia PKKMB',e2s:'Perkenalan kampus ke mahasiswa baru, STIA Satya Negara',e3t:'S1 Administrasi Publik',
+certH:'Sertifikat',galH:'Galeri',kontakH:'Kontak',back:'← Kembali ke semua album',
+photos:'foto',noPhotos:'Belum ada foto.',noPhotos0:'Belum ada foto',noAlbum:'Belum ada album.',galFail:'Galeri akan tampil setelah website di-deploy di GitHub Pages (repo harus public).',toLight:'☀️ Terang',toDark:'🌙 Gelap'},
+en:{nTentang:'About',nKonten:'Content',nPengalaman:'Experience',nSertifikat:'Certificates',nGaleri:'Gallery',nKontak:'Contact',
+h1:'Hello,<br>I\'m Mekhi Wira Yuda.',heroP:'Public Administration fresh graduate and content creator with video editing and design skills.',btnGal:'View Gallery',hint:'Scroll down ↓',
+aboutH:'About Me',aboutP:'Fresh graduate with a Bachelor\'s degree in Public Administration from Sekolah Tinggi Ilmu Administrasi (STIA) Satya Negara Palembang. Proficient in Microsoft Office, with basic English skills, able to work both independently and collaboratively in a team, and ready to adapt to a dynamic work environment. Outside of that, I\'m an amateur content creator who makes and edits my own vlogs.',
+skA:'Administration & Office',skC:'Creative & Content',sTeam:'Independent & team work',sOrg:'Organization & event committees',sEng:'English (basic)',sDoc:'Photo & video documentation',
+contentH:'Creative Content',contentP:'Videos and vlogs that I edit myself.',procH:'Editing Process',
+expH:'Experience & Education',e1t:'Head of Documentation Division, BEM STIA Satya Negara',e1s:'Organization',e2t:'Committee Chair, PKKMB',e2s:'Campus orientation for new students, STIA Satya Negara',e3t:'Bachelor of Public Administration',
+certH:'Certificates',galH:'Gallery',kontakH:'Contact',back:'← Back to all albums',
+photos:'photos',noPhotos:'No photos yet.',noPhotos0:'No photos yet',noAlbum:'No albums yet.',galFail:'The gallery will appear once the site is deployed on GitHub Pages (the repo must be public).',toLight:'☀️ Light',toDark:'🌙 Dark'}};
+const FOLDERS={'foto-personal':{id:'Foto Personal',en:'Personal Photos'},'dokumentasi-bem-stia-satya-negara':{id:'Dokumentasi BEM STIA Satya Negara',en:'BEM STIA Satya Negara Documentation'},'pkkmb-ketua-panitia':{id:'PKKMB (Ketua Panitia)',en:'PKKMB (Committee Chair)'},'jalan-jalan':{id:'Jalan-Jalan',en:'Travel'},'administrasi-perkantoran':{id:'Administrasi & Perkantoran',en:'Administration & Office'},'kreatif-desain':{id:'Kreatif & Desain',en:'Creative & Design'},'organisasi-kegiatan':{id:'Organisasi & Kegiatan',en:'Organizations & Events'}};
+let lang='id';try{lang=localStorage.getItem('lang')==='en'?'en':'id';}catch(e){}
+const t=k=>I18N[lang][k]||I18N.id[k]||k;
+const folderName=s=>FOLDERS[s]?FOLDERS[s][lang]:pretty(s);
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(e=>{e.innerHTML=t(e.dataset.i18n);});
+  document.querySelectorAll('[data-folder]').forEach(e=>{e.textContent=folderName(e.dataset.folder);});
+  document.querySelectorAll('[data-count]').forEach(e=>{e.textContent=e.dataset.count+' '+t('photos');});
+  const l=$('lg');if(l)l.textContent=lang==='id'?'🌐 EN':'🌐 ID';
+  if(typeof paint==='function')paint();
+}
 const IG_REELS = []; // isi kode reel Instagram, contoh: ['C1abcDEfgh2']
 const isVid = n => /\.(mp4|webm|mov)$/i.test(n);
 async function loadMedia(){
@@ -45,8 +74,8 @@ async function loadCerts(){
     for(const d of root.filter(x=>x.type==='dir'))g.push({name:d.name,files:(await list('sertifikat/'+d.name)).filter(f=>f.type==='file')});
     const nm=f=>pretty(f.name.replace(/\.\w+$/,'')),
       card=f=>isImg(f.name)?`<img data-zoom loading="lazy" src="${f.download_url}" alt="${nm(f)}">`:/\.pdf$/i.test(f.name)?`<a class="card pdfc" href="${f.download_url}" target="_blank" rel="noopener">📄 ${nm(f)}</a>`:'';
-    const html=g.filter(x=>x.files.some(f=>card(f))).map(x=>(x.name?`<h3 class="sub">${pretty(x.name)}</h3>`:'')+`<div class="grid cgrid">${x.files.map(card).join('')}</div>`).join('');
-    if(html){$('certs').innerHTML=html;$('sertifikat').style.display='';}
+    const html=g.filter(x=>x.files.some(f=>card(f))).map(x=>(x.name?`<h3 class="sub" data-folder="${x.name}">${pretty(x.name)}</h3>`:'')+`<div class="grid cgrid">${x.files.map(card).join('')}</div>`).join('');
+    if(html){$('certs').innerHTML=html;$('sertifikat').style.display='';applyLang();}
   }catch(e){}
 }
 loadCerts();
@@ -54,7 +83,7 @@ const bg=$('burger'),lk=$('links');
 bg.onclick=()=>{const o=lk.classList.toggle('open');bg.textContent=o?'✕':'☰';bg.setAttribute('aria-expanded',o);};
 lk.addEventListener('click',e=>{if(e.target.tagName==='A'){lk.classList.remove('open');bg.textContent='☰';bg.setAttribute('aria-expanded','false');}});
 const tg=$('tg'),root=document.documentElement;
-const paint=()=>{tg.textContent=root.dataset.theme==='dark'?'☀️ Terang':'🌙 Gelap';};
+const paint=()=>{tg.textContent=root.dataset.theme==='dark'?t('toLight'):t('toDark');};
 tg.onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}paint();};
 paint();
 
@@ -67,22 +96,24 @@ async function loadAlbums(){
     $('albums').innerHTML='';
     albums.forEach(a=>{
       const el=document.createElement('div');el.className='card album';
-      el.innerHTML=(a.imgs[0]?`<img loading="lazy" src="${a.imgs[0].download_url}" alt="">`:'<div class="empty">Belum ada foto</div>')+
-        `<div><h3>${pretty(a.name)}</h3><p>${a.imgs.length} foto</p></div>`;
+      el.innerHTML=(a.imgs[0]?`<img loading="lazy" src="${a.imgs[0].download_url}" alt="">`:'<div class="empty" data-i18n="noPhotos0">Belum ada foto</div>')+
+        `<div><h3 data-folder="${a.name}">${pretty(a.name)}</h3><p data-count="${a.imgs.length}">${a.imgs.length} foto</p></div>`;
       el.onclick=()=>openAlbum(a);
       $('albums').appendChild(el);
     });
-    if(!albums.length)$('gmsg').textContent='Belum ada album.';
+    if(!albums.length)$('gmsg').dataset.i18n='noAlbum';applyLang();
   }catch(e){
-    $('gmsg').textContent='Galeri akan tampil setelah website di-deploy di GitHub Pages (repo harus public).';
+    $('gmsg').dataset.i18n='galFail';applyLang();
   }
 }
 function openAlbum(a){
   $('albums').style.display='none';$('back').style.display='inline-block';
-  $('photos').innerHTML=a.imgs.map(f=>`<img data-zoom loading="lazy" src="${f.download_url}" alt="${pretty(a.name)}">`).join('')||'<p>Belum ada foto.</p>';
+  $('photos').innerHTML=a.imgs.map(f=>`<img data-zoom loading="lazy" src="${f.download_url}" alt="${pretty(a.name)}">`).join('')||'<p data-i18n="noPhotos">Belum ada foto.</p>';applyLang();
   location.hash='galeri';
 }
 $('back').onclick=()=>{$('photos').innerHTML='';$('albums').style.display='';$('back').style.display='none';};
 document.addEventListener('click',e=>{const t=e.target.closest('[data-zoom]');if(t){$('lb').firstElementChild.src=t.src;$('lb').style.display='grid';}});
 $('lb').onclick=()=>{$('lb').style.display='none';};
 loadAlbums();
+$('lg').onclick=()=>{lang=lang==='id'?'en':'id';try{localStorage.setItem('lang',lang)}catch(e){}applyLang();};
+applyLang();

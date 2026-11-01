@@ -61,19 +61,33 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:30px}
 #links{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
 #burger{display:none;border:0;background:none;color:var(--tx);font-size:26px;line-height:1;cursor:pointer;padding:2px 6px}
 #spacer{height:100vh;height:100svh}
-@media(max-width:720px){
+@media(max-width:720px),(max-height:500px){
 header{background:color-mix(in srgb,var(--bg) 92%,transparent)}
-nav{padding:10px 16px}
+nav{padding:8px 16px}
 #burger{display:block}
 #links{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:0;padding:4px 0 10px}
-#links.open{display:flex}
+#links.open{display:flex;max-height:calc(100vh - 64px);max-height:calc(100svh - 64px);overflow-y:auto;overscroll-behavior:contain}
 #links a{font-size:16px;padding:10px 0;width:100%;border-bottom:1px solid var(--bd)}
 #links #tg{margin-top:12px}
+}
+@media(max-height:500px){
+#links.open{display:grid;grid-template-columns:1fr 1fr;column-gap:20px}
+#links.open #tg{grid-column:1/-1;justify-self:start}
+}
+@media(max-width:720px) and (orientation:portrait){
 .slide{background-position:var(--pm,85%) center}
 .shade{background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.45) 50%,rgba(0,0,0,.05) 100%)}
 .hc{justify-content:flex-start;padding:92px 22px 0}
 .hc h1{font-size:clamp(32px,9.5vw,44px)}
 .hc p{font-size:16px;margin-bottom:18px}
+}
+@media(max-height:500px) and (orientation:landscape){
+.hc{max-width:60%;padding:64px 28px 24px;justify-content:center}
+.hc h1{font-size:clamp(26px,5.5vw,40px);margin-bottom:10px}
+.hc p{font-size:14px;margin-bottom:14px}
+.hc .btn{padding:8px 14px;font-size:14px}
+.shade{background:linear-gradient(90deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.05) 100%)}
+.hint{display:none}
 }
 </style>
 </head>

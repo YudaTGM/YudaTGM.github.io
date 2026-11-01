@@ -49,7 +49,7 @@ section,.cgrid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 footer{position:relative;z-index:1}
 #hero{position:fixed;inset:0;z-index:0;overflow:hidden;background:#111}
 #track{display:flex;height:100%;width:100%}
-.slide{flex:0 0 100%;height:100%;background:linear-gradient(135deg,#2a2f3a,#14161b) center/cover no-repeat}
+.slide{flex:0 0 100%;height:100%;background:linear-gradient(135deg,#2a2f3a,#14161b) center/cover no-repeat;background-position:var(--pd,right) center}
 .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.1) 100%)}
 .hc{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:70px clamp(20px,7vw,110px) 40px;color:#fff;max-width:900px}
 .hc h1{font-size:clamp(38px,7vw,84px);line-height:1.1;margin:0 0 18px;text-shadow:0 2px 18px rgba(0,0,0,.5)}
@@ -58,22 +58,40 @@ footer{position:relative;z-index:1}
 #spacer{height:100vh}
 .hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;opacity:.8}
 footer{text-align:center;color:var(--mut);font-size:13px;padding:30px}
+#links{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+#burger{display:none;border:0;background:none;color:var(--tx);font-size:26px;line-height:1;cursor:pointer;padding:2px 6px}
+#spacer{height:100vh;height:100svh}
+@media(max-width:720px){
+header{background:color-mix(in srgb,var(--bg) 92%,transparent)}
+nav{padding:10px 16px}
+#burger{display:block}
+#links{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:0;padding:4px 0 10px}
+#links.open{display:flex}
+#links a{font-size:16px;padding:10px 0;width:100%;border-bottom:1px solid var(--bd)}
+#links #tg{margin-top:12px}
+.slide{background-position:var(--pm,85%) center}
+.shade{background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.45) 50%,rgba(0,0,0,.05) 100%)}
+.hc{justify-content:flex-start;padding:92px 22px 0}
+.hc h1{font-size:clamp(32px,9.5vw,44px)}
+.hc p{font-size:16px;margin-bottom:18px}
+}
 </style>
 </head>
 <body>
 <header><nav>
 <b>Mekhi Wira Yuda</b>
-<a href="#tentang">Tentang</a><a href="#skills">Skills</a><a href="#editing">Konten</a>
+<button id="burger" type="button" aria-label="Buka menu" aria-expanded="false">☰</button>
+<div id="links"><a href="#tentang">Tentang</a><a href="#skills">Skills</a><a href="#editing">Konten</a>
 <a href="#pengalaman">Pengalaman</a><a href="#sertifikat">Sertifikat</a><a href="#galeri">Galeri</a><a href="#kontak">Kontak</a>
-<button id="tg" type="button" aria-label="Ganti tema">☀️ Terang</button>
+<button id="tg" type="button" aria-label="Ganti tema">☀️ Terang</button></div>
 </nav></header>
 
 <div id="hero">
 <div id="track">
-<div class="slide" style="background-image:url(assets/img/hero1.jpg);background-position:right center"></div>
-<div class="slide" style="background-image:url(assets/img/hero2.jpg);background-position:right center"></div>
-<div class="slide" style="background-image:url(assets/img/hero3.jpg);background-position:right center"></div>
-<div class="slide" style="background-image:url(assets/img/hero1.jpg);background-position:right center"></div>
+<div class="slide" style="background-image:url(assets/img/hero1.jpg);--pd:right;--pm:85%"></div>
+<div class="slide" style="background-image:url(assets/img/hero2.jpg);--pd:right;--pm:85%"></div>
+<div class="slide" style="background-image:url(assets/img/hero3.jpg);--pd:right;--pm:85%"></div>
+<div class="slide" style="background-image:url(assets/img/hero1.jpg);--pd:right;--pm:85%"></div>
 </div>
 <div class="shade"></div>
 <div class="hc">
@@ -199,6 +217,9 @@ async function loadCerts(){
   }catch(e){}
 }
 loadCerts();
+const bg=$('burger'),lk=$('links');
+bg.onclick=()=>{const o=lk.classList.toggle('open');bg.textContent=o?'✕':'☰';bg.setAttribute('aria-expanded',o);};
+lk.addEventListener('click',e=>{if(e.target.tagName==='A'){lk.classList.remove('open');bg.textContent='☰';bg.setAttribute('aria-expanded','false');}});
 const tg=$('tg'),root=document.documentElement;
 const paint=()=>{tg.textContent=root.dataset.theme==='dark'?'☀️ Terang':'🌙 Gelap';};
 tg.onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}paint();};

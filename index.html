@@ -12,7 +12,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
 a{color:var(--ac)}
-header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--bd);z-index:5}
+header{position:fixed;top:0;left:0;right:0;background:color-mix(in srgb,var(--bg) 80%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd);z-index:10}
 nav{max-width:1000px;margin:auto;padding:12px 20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
 nav b{margin-right:auto}nav a{text-decoration:none;color:var(--mut);font-size:14px}nav a:hover{color:var(--tx)}
 section{max-width:1000px;margin:auto;padding:56px 20px}
@@ -42,6 +42,18 @@ video,iframe.ig{width:100%;max-width:720px;border-radius:14px;border:1px solid v
 h3.sub{margin:28px 0 12px;font-size:18px}
 .vgrid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
 .proc img{width:100%;border-radius:10px;border:1px solid var(--bd);cursor:zoom-in;display:block}
+html{scroll-padding-top:56px}
+section,footer{position:relative;z-index:1}
+#hero{position:fixed;inset:0;z-index:0;overflow:hidden;background:#111}
+#track{display:flex;height:100%;width:100%}
+.slide{flex:0 0 100%;height:100%;background:linear-gradient(135deg,#2a2f3a,#14161b) center/cover no-repeat}
+.shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.1) 100%)}
+.hc{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:70px clamp(20px,7vw,110px) 40px;color:#fff;max-width:900px}
+.hc h1{font-size:clamp(38px,7vw,84px);line-height:1.1;margin:0 0 18px;text-shadow:0 2px 18px rgba(0,0,0,.5)}
+.hc p{font-size:clamp(16px,2vw,26px);margin:0 0 26px;max-width:640px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.hc .btn.o{background:rgba(0,0,0,.72);border:0;color:#fff}
+#spacer{height:100vh}
+.hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;opacity:.8}
 footer{text-align:center;color:var(--mut);font-size:13px;padding:30px}
 </style>
 </head>
@@ -53,14 +65,24 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:30px}
 <button id="tg" type="button" aria-label="Ganti tema">☀️ Terang</button>
 </nav></header>
 
-<section class="hero">
-<h1>Halo, saya Mekhi Wira Yuda.</h1>
+<div id="hero">
+<div id="track">
+<div class="slide" style="background-image:url(assets/img/hero1.jpg);background-position:right center"></div>
+<div class="slide" style="background-image:url(assets/img/hero2.jpg);background-position:right center"></div>
+<div class="slide" style="background-image:url(assets/img/hero3.jpg);background-position:right center"></div>
+<div class="slide" style="background-image:url(assets/img/hero1.jpg);background-position:right center"></div>
+</div>
+<div class="shade"></div>
+<div class="hc">
+<h1>Halo,<br>Saya Mekhi Wira Yuda.</h1>
 <p>Fresh graduate Administrasi Publik, sekaligus content creator dengan skill editing video dan desain.</p>
-<a class="btn" href="#galeri">Lihat Galeri</a>
-<a class="btn o" href="assets/CV-Mekhi-Wira-Yuda.pdf" download>Download CV</a>
-</section>
+<div><a class="btn" href="#galeri">Lihat Galeri</a><a class="btn o" href="assets/CV-Mekhi-Wira-Yuda.pdf" download>Download CV</a></div>
+</div>
+<div class="hint">Gulir ke bawah ↓</div>
+</div>
+<div id="spacer"></div>
 
-<section id="tentang">
+<section id="tentang" class="fade">
 <h2>Tentang Saya</h2>
 <div class="about">
 <img class="pf" src="assets/img/profil.jpg" alt="Foto Mekhi Wira Yuda" onerror="this.style.display='none'">
@@ -68,7 +90,7 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:30px}
 </div>
 </section>
 
-<section id="skills">
+<section id="skills" class="fade">
 <h2>Skills</h2>
 <h3 class="sub" style="margin-top:0">Administrasi &amp; Perkantoran</h3>
 <div class="tags"><span>Microsoft Office</span><span>Google Docs</span><span>Kerja mandiri &amp; tim</span><span>Organisasi &amp; kepanitiaan</span><span>Bahasa Inggris (dasar)</span></div>
@@ -78,7 +100,7 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:30px}
 
 <section id="editing">
 <h2>Konten Kreatif</h2>
-<p style="color:var(--mut);margin-top:-8px">Video dan vlog yang saya edit sendiri.</p>
+<p style="color:var(--mut);margin-top:-8px">Video dan vlog yang saya edit sendiri. Semua file .mp4 di folder assets/video tampil otomatis.</p>
 <div id="vids" class="grid vgrid"></div>
 <div id="procwrap" style="display:none">
 <h3 class="sub">Proses Editing</h3>
@@ -146,6 +168,18 @@ async function loadMedia(){
   }catch(e){}
 }
 loadMedia();
+(function(){
+  const track=$('track'),n=track.children.length-1;let i=0;
+  track.addEventListener('transitionend',()=>{if(i>=n){track.style.transition='none';i=0;track.style.transform='translateX(0)';}});
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setInterval(()=>{i++;track.style.transition='transform .9s ease';track.style.transform='translateX(-'+i*100+'%)';},5000);
+  const hero=$('hero'),fades=[...document.querySelectorAll('.fade')],cl=x=>Math.max(0,Math.min(1,x));
+  function onScroll(){
+    const vh=innerHeight,o=cl(1-scrollY/(vh*.7));
+    hero.style.opacity=o;hero.style.pointerEvents=o<.3?'none':'auto';hero.style.visibility=o===0?'hidden':'visible';
+    fades.forEach(el=>{const f=cl((vh*.95-el.getBoundingClientRect().top)/(vh*.35));el.style.opacity=f;el.style.pointerEvents=f<.3?'none':'auto';});
+  }
+  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+})();
 const tg=$('tg'),root=document.documentElement;
 const paint=()=>{tg.textContent=root.dataset.theme==='dark'?'☀️ Terang':'🌙 Gelap';};
 tg.onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}paint();};

@@ -52,7 +52,7 @@ async function loadMedia(){
   IG_REELS.forEach(c=>v.insertAdjacentHTML('beforeend',`<iframe class="ig" height="560" src="https://www.instagram.com/reel/${c}/embed" allowfullscreen loading="lazy"></iframe>`));
   try{
     const im=(await list('assets/proses-editing')).filter(f=>f.type==='file'&&isImg(f.name));
-    if(im.length){$('procwrap').style.display='';$('proc').innerHTML=im.map(f=>`<img data-zoom loading="lazy" src="${f.download_url}" alt="Proses editing">`).join('');}
+    if(im.length){$('procwrap').style.display='';$('proc').innerHTML=im.map(f=>`<figure><img data-zoom loading="lazy" src="${f.download_url}" alt="${pretty(f.name.replace(/\.\w+$/,''))}"><figcaption>${pretty(f.name.replace(/\.\w+$/,''))}</figcaption></figure>`).join('');}
   }catch(e){}
 }
 loadMedia();

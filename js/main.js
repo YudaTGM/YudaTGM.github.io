@@ -60,27 +60,37 @@ loadMedia();
   const track=$('track'),n=track.children.length-1;let i=0;
   track.addEventListener('transitionend',()=>{if(i>=n){track.style.transition='none';i=0;track.style.transform='translateX(0)';}});
   if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setInterval(()=>{i++;track.style.transition='transform .9s ease';track.style.transform='translateX(-'+i*100+'%)';},5000);
-  const hero=$('hero'),fades=[...document.querySelectorAll('.fade')],cl=x=>Math.max(0,Math.min(1,x));
+  const hero=$('hero'),fades=[...document.querySelectorAll('section')],cl=x=>Math.max(0,Math.min(1,x)),reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   function onScroll(){
-    const vh=innerHeight,o=cl(1-scrollY/(vh*.7));
+    const vh=innerHeight,o=cl(1-scrollY/(vh*.3)),atEnd=scrollY+vh>=document.documentElement.scrollHeight-4;
     hero.style.opacity=o;hero.style.pointerEvents=o<.3?'none':'auto';hero.style.visibility=o===0?'hidden':'visible';
-    fades.forEach(el=>{const f=cl((vh*.95-el.getBoundingClientRect().top)/(vh*.35));el.style.opacity=f;el.style.pointerEvents=f<.3?'none':'auto';});
+    fades.forEach(el=>{
+      if(!el.offsetHeight)return;
+      if(reduce){el.style.opacity=1;return;}
+      const r=el.getBoundingClientRect(),st=el.id==='tentang'?.7:.9;
+      const fi=atEnd?1:cl((vh*st-r.top)/(vh*.3)),fo=cl((r.bottom-vh*.08)/(vh*.25)),f=Math.min(fi,fo);
+      el.style.opacity=f;el.style.pointerEvents=f<.3?'none':'auto';
+    });
   }
-  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);
+  if(window.ResizeObserver)new ResizeObserver(onScroll).observe(document.body);
+  onScroll();
 })();
 function setupRows(){
   document.querySelectorAll('.rowwrap').forEach(w=>{
     const r=w.querySelector('.row'),p=w.querySelector('.prev'),n=w.querySelector('.next');
     const upd=()=>{p.style.visibility=r.scrollLeft>8?'visible':'hidden';n.style.visibility=r.scrollLeft+r.clientWidth<r.scrollWidth-8?'visible':'hidden';};
-    p.onclick=()=>r.scrollBy({left:-r.clientWidth*.8,behavior:'smooth'});
-    n.onclick=()=>r.scrollBy({left:r.clientWidth*.8,behavior:'smooth'});
+    p.onclick=()=>r.scrollBy({left:-(r.children[0].offsetWidth+14),behavior:'smooth'});
+    n.onclick=()=>r.scrollBy({left:r.children[0].offsetWidth+14,behavior:'smooth'});
     let down=false,sx=0,sl=0,moved=0;
     r.querySelectorAll('img').forEach(i=>{i.draggable=false;});
     r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;moved=0;sx=e.clientX;sl=r.scrollLeft;r.classList.add('drag');});
     addEventListener('pointermove',e=>{if(!down)return;const d=e.clientX-sx;moved=Math.max(moved,Math.abs(d));r.scrollLeft=sl-d;});
     addEventListener('pointerup',()=>{if(!down)return;down=false;r.classList.remove('drag');});
     r.addEventListener('click',e=>{if(moved>6){e.stopPropagation();e.preventDefault();}moved=0;},true);
-    r.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+    const fx=()=>{const rc=r.getBoundingClientRect(),cx=rc.left+rc.width/2;[...r.children].forEach(el=>{const b=el.getBoundingClientRect(),k=Math.min(Math.abs(b.left+b.width/2-cx)/(rc.width/2),1);el.style.opacity=(1-k*.7).toFixed(2);el.style.transform='scale('+(1-k*.08).toFixed(3)+')';});};
+    const both=()=>{upd();fx();};
+    r.addEventListener('scroll',both,{passive:true});addEventListener('resize',both);both();
   });
 }
 async function loadCerts(){
@@ -133,3 +143,9 @@ loadAlbums();
 $('lg').onclick=()=>{lang=lang==='id'?'en':'id';try{localStorage.setItem('lang',lang)}catch(e){}applyLang();};
 applyLang();
 addEventListener('keydown',e=>{if(e.key==='Escape')$('lb').style.display='none';});
+(function(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver' in window))return;
+  const sel=['#tentang h2','.pfwrap','.abt > p','#skills h3','#skills .tags span','#pengalaman h2','#pengalaman h3','#pengalaman .tl > div','#sertifikat h2','#editing h2','#galeri h2','#kontak h2','#kontak .btn'];
+  const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('in',e.isIntersecting)),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  sel.forEach(q=>document.querySelectorAll(q).forEach((el,i)=>{el.classList.add('rv');el.style.setProperty('--d',Math.min(i,8)*70+'ms');io.observe(el);}));
+})();

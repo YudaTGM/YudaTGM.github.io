@@ -74,6 +74,12 @@ function setupRows(){
     const upd=()=>{p.style.visibility=r.scrollLeft>8?'visible':'hidden';n.style.visibility=r.scrollLeft+r.clientWidth<r.scrollWidth-8?'visible':'hidden';};
     p.onclick=()=>r.scrollBy({left:-r.clientWidth*.8,behavior:'smooth'});
     n.onclick=()=>r.scrollBy({left:r.clientWidth*.8,behavior:'smooth'});
+    let down=false,sx=0,sl=0,moved=0;
+    r.querySelectorAll('img').forEach(i=>{i.draggable=false;});
+    r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;moved=0;sx=e.clientX;sl=r.scrollLeft;r.classList.add('drag');});
+    addEventListener('pointermove',e=>{if(!down)return;const d=e.clientX-sx;moved=Math.max(moved,Math.abs(d));r.scrollLeft=sl-d;});
+    addEventListener('pointerup',()=>{if(!down)return;down=false;r.classList.remove('drag');});
+    r.addEventListener('click',e=>{if(moved>6){e.stopPropagation();e.preventDefault();}moved=0;},true);
     r.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
   });
 }
@@ -121,8 +127,9 @@ function openAlbum(a){
   location.hash='galeri';
 }
 $('back').onclick=()=>{$('photos').innerHTML='';$('albums').style.display='';$('back').style.display='none';};
-document.addEventListener('click',e=>{const t=e.target.closest('[data-zoom]');if(t){$('lb').firstElementChild.src=t.src;$('lb').style.display='grid';}});
+document.addEventListener('click',e=>{const t=e.target.closest('[data-zoom]');if(t){$('lb').firstElementChild.src=t.src;$('lb').style.display='flex';}});
 $('lb').onclick=()=>{$('lb').style.display='none';};
 loadAlbums();
 $('lg').onclick=()=>{lang=lang==='id'?'en':'id';try{localStorage.setItem('lang',lang)}catch(e){}applyLang();};
 applyLang();
+addEventListener('keydown',e=>{if(e.key==='Escape')$('lb').style.display='none';});

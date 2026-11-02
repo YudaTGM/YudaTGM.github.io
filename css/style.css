@@ -131,3 +131,16 @@ section{padding:32px 24px}
 .proc{grid-template-columns:repeat(auto-fill,minmax(min(380px,100%),1fr))}
 .proc figure{margin:0}
 .proc figcaption{margin-top:8px;font-size:14px;color:var(--mut)}
+@media(max-height:500px) and (orientation:landscape){
+body{font-size:14px;line-height:1.5}
+h2{font-size:20px;margin-bottom:12px}
+h3.sub{font-size:15px;margin:14px 0 8px}
+.cols{grid-template-columns:1fr 1fr;gap:24px}
+.tl{padding-left:14px}
+.tl div{margin-bottom:10px}
+.tl b{font-size:14.5px}
+.tl small{font-size:12.5px}
+.tags span{font-size:12.5px;padding:3px 10px;margin:0 5px 6px 0}
+.btn{padding:8px 14px;font-size:14px}
+.pfwrap figcaption span{font-size:12.5px}
+}

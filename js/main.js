@@ -18,7 +18,7 @@ aboutH:'Tentang Saya',aboutP:'Lulusan baru dengan gelar Sarjana Administrasi Pub
 skA:'Administrasi & Perkantoran',skC:'Kreatif & Konten',sTeam:'Kerja mandiri & tim',sOrg:'Organisasi & kepanitiaan',sEng:'Bahasa Inggris (dasar)',sDoc:'Dokumentasi foto & video',
 contentH:'Konten Kreatif',contentP:'Video dan vlog yang saya edit sendiri.',procH:'Proses Editing',
 expH:'Pengalaman & Pendidikan',e1t:'Ketua Divisi Dokumentasi, BEM STIA Satya Negara',e1s:'Organisasi',e2t:'Ketua Panitia PKKMB',e2s:'Perkenalan kampus ke mahasiswa baru, STIA Satya Negara',e3t:'S1 Administrasi Publik',
-certH:'Sertifikat',galH:'Galeri',kontakH:'Kontak',back:'← Kembali ke semua album',
+certH:'Sertifikat',role:'Fresh Graduate · Administrasi Publik',orgH:'Pengalaman Organisasi',eduH:'Pendidikan',galH:'Galeri',kontakH:'Kontak',back:'← Kembali ke semua album',
 photos:'foto',noPhotos:'Belum ada foto.',noPhotos0:'Belum ada foto',noAlbum:'Belum ada album.',galFail:'Galeri akan tampil setelah website di-deploy di GitHub Pages (repo harus public).',toLight:'☀️ Terang',toDark:'🌙 Gelap'},
 en:{nTentang:'About',nKonten:'Content',nPengalaman:'Experience',nSertifikat:'Certificates',nGaleri:'Gallery',nKontak:'Contact',
 h1:'Hello,<br>I\'m Mekhi Wira Yuda.',heroP:'Public Administration fresh graduate and content creator with video editing and design skills.',btnGal:'View Gallery',hint:'Scroll down ↓',
@@ -26,7 +26,7 @@ aboutH:'About Me',aboutP:'Fresh graduate with a Bachelor\'s degree in Public Adm
 skA:'Administration & Office',skC:'Creative & Content',sTeam:'Independent & team work',sOrg:'Organization & event committees',sEng:'English (basic)',sDoc:'Photo & video documentation',
 contentH:'Creative Content',contentP:'Videos and vlogs that I edit myself.',procH:'Editing Process',
 expH:'Experience & Education',e1t:'Head of Documentation Division, BEM STIA Satya Negara',e1s:'Organization',e2t:'Committee Chair, PKKMB',e2s:'Campus orientation for new students, STIA Satya Negara',e3t:'Bachelor of Public Administration',
-certH:'Certificates',galH:'Gallery',kontakH:'Contact',back:'← Back to all albums',
+certH:'Certificates',role:'Fresh Graduate · Public Administration',orgH:'Organizational Experience',eduH:'Education',galH:'Gallery',kontakH:'Contact',back:'← Back to all albums',
 photos:'photos',noPhotos:'No photos yet.',noPhotos0:'No photos yet',noAlbum:'No albums yet.',galFail:'The gallery will appear once the site is deployed on GitHub Pages (the repo must be public).',toLight:'☀️ Light',toDark:'🌙 Dark'}};
 const FOLDERS={'foto-personal':{id:'Foto Personal',en:'Personal Photos'},'dokumentasi-bem-stia-satya-negara':{id:'Dokumentasi BEM STIA Satya Negara',en:'BEM STIA Satya Negara Documentation'},'pkkmb-ketua-panitia':{id:'PKKMB (Ketua Panitia)',en:'PKKMB (Committee Chair)'},'jalan-jalan':{id:'Jalan-Jalan',en:'Travel'},'administrasi-perkantoran':{id:'Administrasi & Perkantoran',en:'Administration & Office'},'kreatif-desain':{id:'Kreatif & Desain',en:'Creative & Design'},'organisasi-kegiatan':{id:'Organisasi & Kegiatan',en:'Organizations & Events'}};
 let lang='id';try{lang=localStorage.getItem('lang')==='en'?'en':'id';}catch(e){}
@@ -68,14 +68,23 @@ loadMedia();
   }
   addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
 })();
+function setupRows(){
+  document.querySelectorAll('.rowwrap').forEach(w=>{
+    const r=w.querySelector('.row'),p=w.querySelector('.prev'),n=w.querySelector('.next');
+    const upd=()=>{p.style.visibility=r.scrollLeft>8?'visible':'hidden';n.style.visibility=r.scrollLeft+r.clientWidth<r.scrollWidth-8?'visible':'hidden';};
+    p.onclick=()=>r.scrollBy({left:-r.clientWidth*.8,behavior:'smooth'});
+    n.onclick=()=>r.scrollBy({left:r.clientWidth*.8,behavior:'smooth'});
+    r.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+  });
+}
 async function loadCerts(){
   try{
     const root=await list('sertifikat'),g=[{name:'',files:root.filter(f=>f.type==='file')}];
     for(const d of root.filter(x=>x.type==='dir'))g.push({name:d.name,files:(await list('sertifikat/'+d.name)).filter(f=>f.type==='file')});
     const nm=f=>pretty(f.name.replace(/\.\w+$/,'')),
       card=f=>isImg(f.name)?`<img data-zoom loading="lazy" src="${f.download_url}" alt="${nm(f)}">`:/\.pdf$/i.test(f.name)?`<a class="card pdfc" href="${f.download_url}" target="_blank" rel="noopener">📄 ${nm(f)}</a>`:'';
-    const html=g.filter(x=>x.files.some(f=>card(f))).map(x=>(x.name?`<h3 class="sub" data-folder="${x.name}">${pretty(x.name)}</h3>`:'')+`<div class="grid cgrid">${x.files.map(card).join('')}</div>`).join('');
-    if(html){$('certs').innerHTML=html;$('sertifikat').style.display='';applyLang();}
+    const html=g.filter(x=>x.files.some(f=>card(f))).map(x=>(x.name?`<h3 class="sub" data-folder="${x.name}">${pretty(x.name)}</h3>`:'')+`<div class="rowwrap"><button type="button" class="rn prev" aria-label="Prev">‹</button><div class="row">${x.files.map(card).join('')}</div><button type="button" class="rn next" aria-label="Next">›</button></div>`).join('');
+    if(html){$('certs').innerHTML=html;$('sertifikat').style.display='';applyLang();setupRows();}
   }catch(e){}
 }
 loadCerts();

@@ -116,6 +116,8 @@ function renderCerts(){
   const fh=feat?`<article class="cc feat" style="--c:${catOf(feat.cat).c}"><div class="fimg"><img data-zoom src="${esc(feat.url)}" alt="${esc(feat.title)}"></div><div class="finfo">${badge(feat)}<h3>${esc(feat.title)}</h3>${feat.issuer?`<p class="by">${esc(feat.issuer)}</p>`:''}${feat.date?`<p class="dt">${when(feat)}</p>`:''}<div class="cbtn"><button type="button" class="pill" data-open="${esc(feat.url)}">${t('detail')} 📄</button>${feat.verify?`<a class="pill" href="${esc(feat.verify)}" target="_blank" rel="noopener">${t('verify')} 🔗</a>`:''}</div></div></article>`:'';
   const box=$('certs');
   box.innerHTML=`<div class="ctabs">${tabs.map(([k,l,n])=>`<button type="button" class="ctab${k===certTab?' on':''}" data-tab="${esc(k)}">${esc(l)} <i>${n}</i></button>`).join('')}</div><div class="bento">${fh}${list.map(card).join('')}</div>`;
+  $('sertifikat').style.setProperty('--glow',certTab==='all'?'#3b82f6':catOf(certTab).c);
+  box.querySelectorAll('.cc').forEach(el=>el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px');}));
   box.querySelectorAll('.ctab').forEach(b=>{b.onclick=()=>{certTab=b.dataset.tab;renderCerts();};});
   box.querySelectorAll('[data-open]').forEach(b=>{b.onclick=()=>{$('lb').firstElementChild.src=b.dataset.open;$('lb').style.display='flex';};});
 }

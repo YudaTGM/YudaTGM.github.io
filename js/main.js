@@ -179,7 +179,7 @@ applyLang();
 addEventListener('keydown',e=>{if(e.key==='Escape')$('lb').style.display='none';});
 (function(){
   if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver' in window))return;
-  const sel=['#tentang h2','.pfwrap','.abt > p','.fact','#skills h3','#skills .tags span','#pengalaman h2','#pengalaman h3','#pengalaman .tl > div','#sertifikat h2','#editing h2','#galeri h2','#kontak h2','#kontak .btn'];
+  const sel=['#tentang h2','.pfwrap','.abt > p','#skills h3','#skills .tags span','#pengalaman h2','#pengalaman h3','#pengalaman .tl > div','#sertifikat h2','#editing h2','#galeri h2','#kontak h2','#kontak .btn'];
   const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('in',e.isIntersecting)),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
   sel.forEach(q=>document.querySelectorAll(q).forEach((el,i)=>{el.classList.add('rv');el.style.setProperty('--d',Math.min(i,8)*70+'ms');io.observe(el);}));
 })();

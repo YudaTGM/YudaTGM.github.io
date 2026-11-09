@@ -18,7 +18,7 @@ aboutH:'Tentang Saya',aboutP:'Lulusan baru dengan gelar Sarjana Administrasi Pub
 skA:'Administrasi & Perkantoran',skC:'Kreatif & Konten',sTeam:'Kerja mandiri & tim',sOrg:'Organisasi & kepanitiaan',sEng:'Bahasa Inggris (dasar)',sDoc:'Dokumentasi foto & video',
 contentH:'Konten Kreatif',contentP:'Video dan vlog yang saya edit sendiri.',procH:'Proses Editing',
 expH:'Pengalaman & Pendidikan',e1t:'Ketua Divisi Dokumentasi, BEM STIA Satya Negara',e1s:'Organisasi',e2t:'Ketua Pelaksana PKKMB 2025',e2s:'Pengenalan Kehidupan Kampus bagi Mahasiswa Baru (PKKMB), STIA Satya Negara',e3t:'S1 Administrasi Publik',e1d:'Juni 2024 – Juli 2026',e1p:'Memimpin dan mengoordinasikan tim dokumentasi dalam peliputan program kerja dan acara BEM, serta mengelola dan mengarsipkan aset visual (foto dan video) organisasi.',e2d:'6 Desember 2025',e2p:'Memimpin kepanitiaan mahasiswa dalam merencanakan dan melaksanakan orientasi mahasiswa baru, berkoordinasi dengan pihak kampus, mengawasi seluruh divisi (acara, keamanan, dokumentasi), menangani masalah di lapangan, dan menyusun laporan pertanggungjawaban.',achH:'Kegiatan & Lomba',a1t:'Peserta Lomba Fotografi PEKSIMIDA Tingkat Provinsi Sumatera Selatan',a1d:'Juli 2026',a1p:'Mengikuti lomba fotografi pada Pekan Seni Mahasiswa Daerah (PEKSIMIDA) Provinsi Sumatera Selatan, 15–16 Juli 2026, mewakili STIA Satya Negara.',e3d:'2022 – 2026',e3g:'IPK 3.63',e4s:'Jurusan IPA',e4d:'2018 – 2022',
-certH:'Sertifikat',f1n:'3,63',f1:'IPK S1 Administrasi Publik',f2:'mahasiswa baru dalam PKKMB 2025, sebagai Ketua Pelaksana',f3n:'2+ tahun',f3:'memimpin dokumentasi BEM STIA Satya Negara',btnCv:'Download CV',cvAts:'CV ATS',cvAtsD:'Format polos, untuk portal lowongan dan lamaran umum',cvKr:'CV Kreatif',cvKrD:'Desain visual, untuk posisi konten, media, dan desain',cvNone:'CV belum tersedia',proof:'Lihat bukti ↗',all:'Semua',detail:'Lihat Detail',verify:'Verifikasi',zoom:'Zoom',role:'Fresh Graduate · Administrasi Publik',orgH:'Pengalaman Organisasi',eduH:'Pendidikan',galH:'Galeri',kontakH:'Kontak',back:'← Kembali ke semua album',
+certH:'Sertifikat',openIn:'Buka di',f1n:'3,63',f1:'IPK S1 Administrasi Publik',f2:'mahasiswa baru dalam PKKMB 2025, sebagai Ketua Pelaksana',f3n:'2+ tahun',f3:'memimpin dokumentasi BEM STIA Satya Negara',btnCv:'Download CV',cvAts:'CV ATS',cvAtsD:'Format polos, untuk portal lowongan dan lamaran umum',cvKr:'CV Kreatif',cvKrD:'Desain visual, untuk posisi konten, media, dan desain',cvNone:'CV belum tersedia',proof:'Lihat bukti ↗',all:'Semua',detail:'Lihat Detail',verify:'Verifikasi',zoom:'Zoom',role:'Fresh Graduate · Administrasi Publik',orgH:'Pengalaman Organisasi',eduH:'Pendidikan',galH:'Galeri',kontakH:'Kontak',back:'← Kembali ke semua album',
 photos:'foto',noPhotos:'Belum ada foto.',noPhotos0:'Belum ada foto',noAlbum:'Belum ada album.',galFail:'Galeri akan tampil setelah website di-deploy di GitHub Pages (repo harus public).',toLight:'☀️ Terang',toDark:'🌙 Gelap'},
 en:{nTentang:'About',nKonten:'Content',nPengalaman:'Experience',nSertifikat:'Certificates',nGaleri:'Gallery',nKontak:'Contact',
 h1:'Hello,<br>I\'m <span class="nm">Mekhi Wira Yuda.</span>',heroP:'Public Administration fresh graduate and content creator with video editing and design skills.',btnGal:'View Gallery',hint:'Scroll down ↓',
@@ -26,7 +26,7 @@ aboutH:'About Me',aboutP:'Fresh graduate with a Bachelor\'s degree in Public Adm
 skA:'Administration & Office',skC:'Creative & Content',sTeam:'Independent & team work',sOrg:'Organization & event committees',sEng:'English (basic)',sDoc:'Photo & video documentation',
 contentH:'Creative Content',contentP:'Videos and vlogs that I edit myself.',procH:'Editing Process',
 expH:'Experience & Education',e1t:'Head of Documentation Division, BEM STIA Satya Negara',e1s:'Organization',e2t:'Event Chair, PKKMB 2025',e2s:'Campus Life Orientation for New Students (PKKMB), STIA Satya Negara',e3t:'Bachelor of Public Administration',e1d:'Jun 2024 – Jul 2026',e1p:'Led and coordinated the documentation team covering BEM programs and events, and managed and archived the organization\'s visual assets (photos and videos).',e2d:'6 December 2025',e2p:'Led the student committee in planning and running the new student orientation, coordinated with the campus, supervised all divisions (events, security, documentation), handled issues on site, and prepared the accountability report.',achH:'Activities & Competitions',a1t:'Participant, Photography Competition, PEKSIMIDA South Sumatra Province Level',a1d:'July 2026',a1p:'Took part in the photography competition at the South Sumatra Regional Student Art Week (PEKSIMIDA), 15–16 July 2026, representing STIA Satya Negara.',e3d:'2022 – 2026',e3g:'GPA 3.63',e4s:'Science Track',e4d:'2018 – 2022',
-certH:'Certificates',f1n:'3.63',f1:'GPA, Bachelor of Public Administration',f2:'new students at PKKMB 2025, as Event Chair',f3n:'2+ years',f3:'leading the documentation division, BEM STIA Satya Negara',btnCv:'Download CV',cvAts:'ATS CV',cvAtsD:'Plain format, for job portals and general applications',cvKr:'Creative CV',cvKrD:'Visual design, for content, media, and design roles',cvNone:'CV not available yet',proof:'View proof ↗',all:'All',detail:'View Details',verify:'Verify',zoom:'Zoom',role:'Fresh Graduate · Public Administration',orgH:'Organizational Experience',eduH:'Education',galH:'Gallery',kontakH:'Contact',back:'← Back to all albums',
+certH:'Certificates',openIn:'Open on',f1n:'3.63',f1:'GPA, Bachelor of Public Administration',f2:'new students at PKKMB 2025, as Event Chair',f3n:'2+ years',f3:'leading the documentation division, BEM STIA Satya Negara',btnCv:'Download CV',cvAts:'ATS CV',cvAtsD:'Plain format, for job portals and general applications',cvKr:'Creative CV',cvKrD:'Visual design, for content, media, and design roles',cvNone:'CV not available yet',proof:'View proof ↗',all:'All',detail:'View Details',verify:'Verify',zoom:'Zoom',role:'Fresh Graduate · Public Administration',orgH:'Organizational Experience',eduH:'Education',galH:'Gallery',kontakH:'Contact',back:'← Back to all albums',
 photos:'photos',noPhotos:'No photos yet.',noPhotos0:'No photos yet',noAlbum:'No albums yet.',galFail:'The gallery will appear once the site is deployed on GitHub Pages (the repo must be public).',toLight:'☀️ Light',toDark:'🌙 Dark'}};
 const FOLDERS={'foto-personal':{id:'Foto Personal',en:'Personal Photos'},'dokumentasi-bem-stia-satya-negara':{id:'Dokumentasi BEM STIA Satya Negara',en:'BEM STIA Satya Negara Documentation'},'pkkmb-ketua-panitia':{id:'PKKMB (Ketua Panitia)',en:'PKKMB (Committee Chair)'},'jalan-jalan':{id:'Jalan-Jalan',en:'Travel'},'administrasi-perkantoran':{id:'Administrasi & Perkantoran',en:'Administration & Office'},'kreatif-desain':{id:'Kreatif & Desain',en:'Creative & Design'},'organisasi-kegiatan':{id:'Organisasi & Kegiatan',en:'Organizations & Events'}};
 let lang='id';try{lang=localStorage.getItem('lang')==='en'?'en':'id';}catch(e){}
@@ -43,17 +43,49 @@ function applyLang(){
 }
 const IG_REELS = []; // isi kode reel Instagram, contoh: ['C1abcDEfgh2']
 const isVid = n => /\.(mp4|webm|mov)$/i.test(n);
+const PLAT={yt:'YouTube',ig:'Instagram',file:'Video'};
+function parseVid(u){
+  u=String(u||'').trim();let m;
+  if((m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/)))return{k:'yt',id:m[1],v:/shorts\//.test(u),link:'https://www.youtube.com/watch?v='+m[1]};
+  if((m=u.match(/instagram\.com\/(reels?|p|tv)\/([\w-]+)/))){const t0=m[1]==='reels'?'reel':m[1];return{k:'ig',id:m[2],t:t0,v:true,link:'https://www.instagram.com/'+t0+'/'+m[2]+'/'};}
+  if(isVid(u))return{k:'file',src:u,v:false};
+  return null;
+}
+function vcard(it,i){
+  const th=it.thumb?`<img loading="lazy" decoding="async" src="${esc(it.thumb)}" alt="">`
+    :it.k==='yt'?`<img loading="lazy" decoding="async" src="https://i.ytimg.com/vi/${it.id}/hqdefault.jpg" alt="">`
+    :it.k==='file'?`<video muted playsinline preload="metadata" src="${esc(it.src)}#t=0.8"></video>`
+    :`<div class="vph">${PLAT[it.k]}</div>`;
+  return `<button type="button" class="vcard" data-v="${i}" aria-label="${esc(it.title||PLAT[it.k])}">${th}<span class="vplay">▶</span><span class="vsrc">${PLAT[it.k]}</span></button>`;
+}
+var VITEMS=[];
+function openVid(i){
+  const it=VITEMS[i];if(!it)return;
+  let h='';
+  if(it.k==='yt')h=`<iframe src="https://www.youtube-nocookie.com/embed/${it.id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  else if(it.k==='ig')h=`<iframe src="https://www.instagram.com/${it.t}/${it.id}/embed" allowfullscreen scrolling="no"></iframe>`;
+  else h=`<video controls autoplay playsinline src="${esc(it.src)}"></video>`;
+  $('vbox').className='vbox '+(it.v?'tall':'wide');
+  $('vframe').innerHTML=h+(it.link?`<a class="vopen" href="${esc(it.link)}" target="_blank" rel="noopener">${t('openIn')} ${PLAT[it.k]} ↗</a>`:'');
+  $('vb').style.display='flex';
+}
+const closeVid=()=>{$('vb').style.display='none';$('vframe').innerHTML='';};
+$('vb').onclick=e=>{if(e.target.id==='vb'||e.target.id==='vbx')closeVid();};
+addEventListener('keydown',e=>{if(e.key==='Escape')closeVid();});
 async function loadMedia(){
   const v=$('vids');
-  try{
-    (await list('assets/video')).filter(f=>f.type==='file'&&isVid(f.name)).forEach(f=>{
-      v.insertAdjacentHTML('beforeend',`<video controls preload="metadata" src="${f.download_url}"></video>`);
-    });
-  }catch(e){v.insertAdjacentHTML('beforeend','<video controls preload="metadata" src="assets/video/porto1editing.mp4"></video>');}
-  IG_REELS.forEach(c=>v.insertAdjacentHTML('beforeend',`<iframe class="ig" height="560" src="https://www.instagram.com/reel/${c}/embed" allowfullscreen loading="lazy"></iframe>`));
+  let src=[];
+  try{const r=await fetch('assets/konten.json');if(r.ok)src=await r.json();}catch(e){}
+  VITEMS=(Array.isArray(src)?src:[]).map(o=>{const p=parseVid(o&&o.url);return p?Object.assign(p,{title:o.title||'',thumb:o.thumb||''}):null;}).filter(Boolean);
+  if(!VITEMS.length){
+    try{(await list('assets/video')).filter(f=>f.type==='file'&&isVid(f.name)).forEach(f=>VITEMS.push({k:'file',src:f.download_url,title:'',thumb:'',v:false}));}
+    catch(e){VITEMS.push({k:'file',src:'assets/video/porto1editing.mp4',title:'',thumb:'',v:false});}
+  }
+  v.innerHTML=VITEMS.map(vcard).join('');
+  v.querySelectorAll('.vcard').forEach(b=>{b.onclick=()=>openVid(+b.dataset.v);});
   try{
     const im=(await list('assets/proses-editing')).filter(f=>f.type==='file'&&isImg(f.name));
-    if(im.length){$('procwrap').style.display='';$('proc').innerHTML=im.map(f=>`<figure><img data-zoom loading="lazy" src="${f.download_url}" alt="${pretty(f.name.replace(/\.\w+$/,''))}"><figcaption>${pretty(f.name.replace(/\.\w+$/,''))}</figcaption></figure>`).join('');}
+    if(im.length){$('procwrap').style.display='';$('proc').innerHTML=im.map(f=>`<figure><img data-zoom loading="lazy" decoding="async" src="${f.download_url}" alt="Proses editing"></figure>`).join('');}
   }catch(e){}
 }
 loadMedia();
